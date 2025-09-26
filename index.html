@@ -100,7 +100,7 @@
         }
         .high-contrast-mode .bg-white.text-pink-600 {
             background-color: #ffffff !important;
-            color: #000000 !important;
+            color: #00ff00 !important;
             border: 2px solid #00ff00;
         }
     </style>
@@ -132,6 +132,7 @@
                 <li><a href="#testimonials" class="text-secondary hover:text-pink-500 transition duration-300">Testimonials</a></li>
                 <li><a href="#about" class="text-secondary hover:text-pink-500 transition duration-300">About</a></li>
                 <li><a href="#contact" class="text-secondary hover:text-pink-500 transition duration-300">Contact Us</a></li>
+                <li><a href="#terms" class="text-secondary hover:text-pink-500 transition duration-300">Terms & Conditions</a></li>
                 <li class="ml-4">
                      <button id="theme-toggle-button-desktop" class="text-gray-600 focus:outline-none w-8 h-8 flex items-center justify-center">
                         <!-- Default SVG for light mode -->
@@ -156,6 +157,7 @@
                     <li><a href="#testimonials" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">Testimonials</a></li>
                     <li><a href="#about" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">About</a></li>
                     <li><a href="#contact" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">Contact Us</a></li>
+                    <li><a href="#terms" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">Terms & Conditions</a></li>
                 </ul>
             </div>
         </nav>
@@ -317,6 +319,60 @@
                 </a>
             </div>
         </section>
+
+        <!-- Terms and Conditions Section -->
+        <section id="terms" class="py-20 px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-center mb-12 text-primary">
+                    Terms and <span class="text-gradient">Conditions</span>
+                </h2>
+                <div class="bg-container p-8 rounded-3xl shadow-lg border border-primary text-secondary space-y-6">
+                    <p class="text-sm italic font-semibold text-center text-red-600">
+                        Disclaimer: This is a sample document and should not be considered legal advice. Please consult with a legal professional to draft a custom document for your business.
+                    </p>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-primary">1. Acceptance of Terms</h3>
+                        <p>By accessing and using the NetDate website and app ("Service"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you may not use the Service.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-primary">2. User Conduct</h3>
+                        <p>You agree to use the Service only for lawful purposes. You are solely responsible for your interactions with other users. You must not use the Service to harass, abuse, or harm another person, or to send any unsolicited messages or spam.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-primary">3. Privacy</h3>
+                        <p>Your use of the Service is also governed by our Privacy Policy, which is incorporated by reference into these Terms. By using the Service, you consent to the collection and use of your data as described in the Privacy Policy.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-primary">4. Content Ownership</h3>
+                        <p>You retain all ownership rights to the content you post on the Service. However, by posting content, you grant NetDate a worldwide, royalty-free, and non-exclusive license to use, reproduce, modify, and display the content in connection with the Service.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-primary">5. Disclaimers</h3>
+                        <p>The Service is provided on an "as-is" and "as-available" basis. NetDate makes no warranties, express or implied, regarding the Service's reliability, accuracy, or availability. NetDate is not responsible for the conduct of any users on the Service.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-primary">6. Limitation of Liability</h3>
+                        <p>In no event shall NetDate, its affiliates, or its partners be liable for any indirect, incidental, special, or consequential damages arising out of your use of or inability to use the Service.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-primary">7. Termination</h3>
+                        <p>NetDate reserves the right to suspend or terminate your account and access to the Service at any time, for any reason, without notice or liability.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-2 text-primary">8. Governing Law</h3>
+                        <p>These Terms are governed by the laws of the jurisdiction where NetDate is based, without regard to its conflict of law principles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     
     <!-- Footer -->
@@ -367,6 +423,7 @@
         </div>
         <div class="container mx-auto max-w-5xl text-center border-t border-gray-700 mt-8 pt-8">
             <p class="text-gray-400">&copy; 2025 NETD4TE. All Rights Reserved.</p>
+            <a href="#terms" class="text-gray-400 hover:text-white transition duration-300 mt-2 block">Terms & Conditions</a>
         </div>
     </footer>
 
@@ -440,4 +497,3 @@
     </script>
 </body>
 </html>
-
