@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetDate - Your AI Digital Wingman</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        /* Base colors for all modes */
+        .text-gradient {
+            background-image: linear-gradient(to right, #fb7185, #be185d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Light Mode */
+        .light-mode {
+            background-color: #f7fafc;
+            color: #1a202c;
+        }
+        .light-mode .bg-container {
+            background-color: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .light-mode .text-primary { color: #1a202c; }
+        .light-mode .text-secondary { color: #4a5568; }
+        .light-mode .bg-secondary { background-color: #e2e8f0; }
+        .light-mode .border-primary { border-color: #e2e8f0; }
+
+        /* Dark Mode */
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .dark-mode .bg-container {
+            background-color: #2d3748;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .dark-mode .text-primary { color: #e2e8f0; }
+        .dark-mode .text-secondary { color: #cbd5e0; }
+        .dark-mode .bg-secondary { background-color: #4a5568; }
+        .dark-mode .border-primary { border-color: #4a5568; }
+        .dark-mode .text-gray-600 { color: #a0aec0; }
+
+        /* High Contrast Mode */
+        .high-contrast-mode {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .high-contrast-mode .bg-container {
+            background-color: #000000;
+            border: 2px solid #ffffff;
+            box-shadow: none;
+        }
+        .high-contrast-mode .text-primary, 
+        .high-contrast-mode .text-secondary,
+        .high-contrast-mode .text-gray-400 {
+            color: #ffffff;
+        }
+        .high-contrast-mode .bg-secondary {
+            background-color: #ffffff;
+        }
+        .high-contrast-mode .bg-secondary.text-primary {
+            color: #000000;
+        }
+        .high-contrast-mode .border-primary { border-color: #ffffff; }
+        .high-contrast-mode .text-gray-600 { color: #ffffff; }
+        .high-contrast-mode .text-pink-500, .high-contrast-mode .text-pink-600, .high-contrast-mode .text-pink-700 {
+            color: #00ff00 !important;
+        }
+        .high-contrast-mode .bg-pink-600 {
+            background-color: #00ff00 !important;
+            color: #000000 !important;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <!-- Header -->
+    <header class="bg-container sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <a href="#" class="text-3xl font-bold text-pink-500 tracking-wide">NETD4TE</a>
+            
+            <!-- Mobile Menu & Theme Toggle Buttons -->
+            <div class="flex items-center space-x-4 md:hidden">
+                <button id="theme-toggle-button" class="text-gray-600 focus:outline-none w-8 h-8 flex items-center justify-center">
+                    <!-- Default SVG for light mode -->
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </button>
+                <button id="menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex items-center space-x-8 font-medium">
+                <li><a href="#home" class="text-secondary hover:text-pink-500 transition duration-300">Home</a></li>
+                <li><a href="#features" class="text-secondary hover:text-pink-500 transition duration-300">Features</a></li>
+                <li><a href="#how-it-works" class="text-secondary hover:text-pink-500 transition duration-300">How It Works</a></li>
+                <li><a href="#testimonials" class="text-secondary hover:text-pink-500 transition duration-300">Testimonials</a></li>
+                <li><a href="#about" class="text-secondary hover:text-pink-500 transition duration-300">About</a></li>
+                <li><a href="#contact" class="text-secondary hover:text-pink-500 transition duration-300">Contact Us</a></li>
+                <li class="ml-4">
+                     <button id="theme-toggle-button-desktop" class="text-gray-600 focus:outline-none w-8 h-8 flex items-center justify-center">
+                        <!-- Default SVG for light mode -->
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                     </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-screen bg-container transition-transform duration-300 transform -translate-x-full md:hidden">
+                <div class="flex justify-end p-4">
+                    <button id="close-menu" class="text-gray-600 focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <ul class="flex flex-col items-center space-y-8 text-xl font-semibold">
+                    <li><a href="#home" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">Home</a></li>
+                    <li><a href="#features" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">Features</a></li>
+                    <li><a href="#how-it-works" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">How It Works</a></li>
+                    <li><a href="#testimonials" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">Testimonials</a></li>
+                    <li><a href="#about" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">About</a></li>
+                    <li><a href="#contact" class="text-secondary hover:text-pink-500 transition duration-300" onclick="closeMobileMenu()">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto">
+        <!-- Hero Section -->
+        <section id="home" class="py-20 px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-4 text-primary">
+                    Meet Your <span class="text-gradient">AI Digital Wingman</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-secondary mb-8 max-w-2xl mx-auto">
+                    Especially for introverts and anyone who gets nervous starting a conversation. Let our smart AI break the ice for you.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" class="bg-gray-900 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition duration-300 transform hover:scale-105">
+                        GET IT ON Play Store
+                    </a>
+                    <a href="#" class="bg-secondary text-primary font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-300 transition duration-300 transform hover:scale-105">
+                        COMING SOON ON App Store
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 px-4 bg-container">
+            <h2 class="text-4xl font-extrabold text-center mb-12 text-primary">
+                Why <span class="text-gradient">NETD4TE</span>?
+            </h2>
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Feature 1: AI Wingman -->
+                <div class="bg-container p-8 rounded-3xl shadow-lg border border-primary hover:shadow-xl transition duration-300">
+                    <div class="flex items-center justify-center w-16 h-16 bg-white rounded-2xl mb-6">
+                        <svg class="w-10 h-10 text-pink-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 16H9v-2h2v2zm2-4h-2V7h2v7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-primary">AI Wingman</h3>
+                    <p class="text-secondary">Our unique AI helps you send the perfect first message when you match with someone, taking the pressure off.</p>
+                </div>
+
+                <!-- Feature 2: Introvert Friendly -->
+                <div class="bg-container p-8 rounded-3xl shadow-lg border border-primary hover:shadow-xl transition duration-300">
+                    <div class="flex items-center justify-center w-16 h-16 bg-white rounded-2xl mb-6">
+                        <svg class="w-10 h-10 text-pink-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm6 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Introvert Friendly</h3>
+                    <p class="text-secondary">Special "Introvert Requests" powered by our AI make it easier than ever to show you're interested.</p>
+                </div>
+
+                <!-- Feature 3: Privacy Focused -->
+                <div class="bg-container p-8 rounded-3xl shadow-lg border border-primary hover:shadow-xl transition duration-300">
+                    <div class="flex items-center justify-center w-16 h-16 bg-white rounded-2xl mb-6">
+                        <svg class="w-10 h-10 text-pink-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Privacy Focused</h3>
+                    <p class="text-secondary">No GPS tracking. No unnecessary permissions. You control your data and who you connect with.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-20 px-4">
+            <h2 class="text-4xl font-extrabold text-center mb-12 text-primary">
+                How It <span class="text-gradient">Works</span>
+            </h2>
+            <div class="max-w-4xl mx-auto grid sm:grid-cols-3 gap-8 text-center">
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center w-20 h-20 bg-pink-200 rounded-full mb-4">
+                        <svg class="w-10 h-10 text-pink-700" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-primary">1. Create Your Profile</h3>
+                    <p class="text-secondary">Showcase your personality and what you're passionate about. It's quick and easy!</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center w-20 h-20 bg-pink-200 rounded-full mb-4">
+                        <svg class="w-10 h-10 text-pink-700" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.84 5.86c-1.39-1.39-3.64-1.39-5.03 0-1.39 1.39-1.39 3.64 0 5.03L16 13l-5 5-2-2-3 3-2 2-2-2 3-3 2-2 5-5 5.03 5.03c1.39 1.39 3.64 1.39 5.03 0 1.39-1.39 1.39-3.64 0-5.03L18.84 5.86z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-primary">2. Match & Connect</h3>
+                    <p class="text-secondary">Our AI helps you find compatible people and makes the first move for you.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center w-20 h-20 bg-pink-200 rounded-full mb-4">
+                        <svg class="w-10 h-10 text-pink-700" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 12.01c0 3.31-3.32 6-8 6s-8-2.69-8-6c0-1.2.33-2.31.9-3.3L2 12c0 5.52 4.48 10 10 10s10-4.48 10-10l-1-2.99zM12 2C6.48 2 2 6.48 2 12h2c0-4.41 3.59-8 8-8s8 3.59 8 8h2c0-5.52-4.48-10-10-10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-primary">3. Start Your Journey</h3>
+                    <p class="text-secondary">Enjoy meaningful conversations and build real connections. The journey starts here.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 px-4 bg-container">
+            <h2 class="text-4xl font-extrabold text-center mb-12 text-primary">
+                What Our Users Are <span class="text-gradient">Saying</span>
+            </h2>
+            <div class="max-w-3xl mx-auto space-y-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-container p-8 rounded-3xl shadow-lg border border-primary hover:shadow-xl transition duration-300">
+                    <p class="text-secondary italic mb-4">"I've always struggled with opening lines. NetDate's AI wingman gave me the perfect start and I've met some incredible people!"</p>
+                    <p class="font-bold text-primary">- Alex, 28</p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-container p-8 rounded-3xl shadow-lg border border-primary hover:shadow-xl transition duration-300">
+                    <p class="text-secondary italic mb-4">"The introvert-friendly features are a game-changer. I feel so much more comfortable reaching out to people now."</p>
+                    <p class="font-bold text-primary">- Sarah, 24</p>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-container p-8 rounded-3xl shadow-lg border border-primary hover:shadow-xl transition duration-300">
+                    <p class="text-secondary italic mb-4">"Finally, a dating app that respects my privacy. No weird location tracking, just genuine connections."</p>
+                    <p class="font-bold text-primary">- Jordan, 31</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connecting People Section -->
+        <section id="about" class="py-20 px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6 text-primary">
+                    Connecting People, <span class="text-gradient">Digitally.</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto">
+                    The name NETD4TE comes from the idea of dating online, on the 'net'. We're here to make digital connections feel as real and exciting as meeting in person. Our platform is designed to be cheerful, positive, and a place where everyone feels comfortable being themselves.
+                </p>
+                <div class="mt-12 w-full flex justify-center">
+                    <img src="https://placehold.co/400x800/E5E7EB/4B5563?text=NetDate+App+Mockup" alt="NetDate App Mockup" class="rounded-3xl shadow-2xl max-w-full h-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Banner -->
+        <section class="bg-pink-600 text-white py-16 text-center">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
+                    Ready to find your match?
+                </h2>
+                <p class="text-lg mb-8 max-w-2xl mx-auto">
+                    Download NetDate today and let your AI Digital Wingman help you start your next great conversation.
+                </p>
+                <a href="#" class="bg-white text-pink-600 font-semibold py-4 px-10 rounded-full shadow-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">
+                    DOWNLOAD NOW
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white py-12 px-4">
+        <div class="container mx-auto max-w-5xl grid md:grid-cols-3 gap-8 text-center md:text-left">
+            
+            <!-- Logo & Tagline -->
+            <div class="md:col-span-1">
+                <h3 class="text-2xl font-bold mb-2 text-pink-400">NETD4TE</h3>
+                <p class="text-gray-400">Your AI Digital Wingman for better connections.</p>
+            </div>
+            
+            <!-- Follow Us -->
+            <div class="md:col-span-1">
+                <h4 class="text-lg font-semibold mb-3">Follow Us</h4>
+                <ul class="flex justify-center md:justify-start space-x-6">
+                    <li><a href="https://twitter.com/netd4te_app" class="hover:text-pink-400 transition duration-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.795-1.574 2.16-2.723-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.085 0-5.592 2.507-5.592 5.592 0 .44.05.86.138 1.267-4.64-2.32-8.75-4.91-11.531-8.24-.476.818-.75 1.767-.75 2.784 0 1.936.983 3.656 2.485 4.653-.91-.028-1.76-.28-2.51-.69v.07c0 2.71 1.93 4.96 4.485 5.49-.47.13-.96.2-1.47.2-.36 0-.71-.03-1.05-.1 1.427 4.45 5.54 7.684 10.41 7.778-1.92 1.503-4.34 2.404-6.974 2.404-.45 0-.89-.025-1.33-.075 2.545 1.623 5.565 2.57 8.81 2.57 10.57 0 16.35-8.774 16.35-16.35 0-.25-.01-.5-.025-.75.69-.5 1.28-1.135 1.75-1.85z"/>
+                        </svg>
+                    </a></li>
+                    <li><a href="https://instagram.com/netd4te" class="hover:text-pink-400 transition duration-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.204-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.069-4.849.069-3.204 0-3.584-.012-4.849-.069-3.252-.149-4.771-1.691-4.919-4.919-.058-1.265-.069-1.644-.069-4.849 0-3.204.012-3.584.069-4.849.149-3.225 1.664-4.771 4.919-4.919 1.266-.058 1.644-.069 4.849-.069zM12 0C8.74 0 8.334.014 7.027.072c-4.444.204-6.666 2.426-6.87 6.87-.058 1.307-.071 1.714-.071 5.023s.013 3.716.071 5.023c.204 4.444 2.426 6.666 6.87 6.87 1.307.058 1.714.071 5.023.071s3.716-.013 5.023-.071c4.444-.204 6.666-2.426 6.87-6.87-.058-1.307-.071-1.714-.071-5.023s-.013-3.716-.071-5.023c-.204-4.444-2.426-6.666-6.87-6.87-1.307-.058-1.714-.071-5.023-.071zM12 5.837c-3.41 0-6.163 2.753-6.163 6.163s2.753 6.163 6.163 6.163c3.41 0 6.163-2.753 6.163-6.163s-2.753-6.163-6.163-6.163zm0 10.163c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zM18.067 5.868c-.785 0-1.423-.638-1.423-1.423s.638-1.423 1.423-1.423c.785 0 1.423.638 1.423 1.423s-.638 1.423-1.423 1.423z"/>
+                        </svg>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Us -->
+            <div class="md:col-span-1 text-center md:text-left">
+                <h4 class="text-lg font-semibold mb-3">Contact Us</h4>
+                <ul class="space-y-2">
+                    <li class="flex items-center justify-center md:justify-start">
+                        <svg class="w-5 h-5 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <a href="mailto:support@netd4te.com" class="text-gray-400 hover:text-white transition duration-300">support@netd4te.com</a>
+                    </li>
+                    <li class="flex items-center justify-center md:justify-start">
+                        <svg class="w-5 h-5 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                        <a href="mailto:press@netd4te.com" class="text-gray-400 hover:text-white transition duration-300">press@netd4te.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto max-w-5xl text-center border-t border-gray-700 mt-8 pt-8">
+            <p class="text-gray-400">&copy; 2025 NETD4TE. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu');
+        const themeToggleButton = document.getElementById('theme-toggle-button');
+        const themeToggleButtonDesktop = document.getElementById('theme-toggle-button-desktop');
+        const body = document.body;
+        const themes = ['light-mode', 'dark-mode', 'high-contrast-mode'];
+        let currentThemeIndex = 0;
+
+        const icons = {
+            'light-mode': `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>`,
+            'dark-mode': `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>`,
+            'high-contrast-mode': `<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.41-7-7.43s3.05-6.94 7-7.43v14.86z"></path></svg>`
+        };
+
+        function setTheme(themeName) {
+            body.className = themeName;
+            localStorage.setItem('theme', themeName);
+            updateThemeIcons(themeName);
+        }
+
+        function updateThemeIcons(themeName) {
+            themeToggleButton.innerHTML = icons[themeName];
+            themeToggleButtonDesktop.innerHTML = icons[themeName];
+        }
+        
+        function toggleTheme() {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            setTheme(themes[currentThemeIndex]);
+        }
+        
+        // Initial theme setup on page load
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            currentThemeIndex = themes.indexOf(storedTheme);
+            setTheme(storedTheme);
+        } else {
+            setTheme('light-mode');
+        }
+
+        // Hamburger menu logic
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('-translate-x-full');
+            mobileMenu.classList.toggle('translate-x-0');
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.add('-translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+        }
+
+        menuButton.addEventListener('click', toggleMobileMenu);
+        closeMenuButton.addEventListener('click', closeMobileMenu);
+        themeToggleButton.addEventListener('click', toggleTheme);
+        themeToggleButtonDesktop.addEventListener('click', toggleTheme);
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const isClickInsideMenu = mobileMenu.contains(event.target) || menuButton.contains(event.target) || themeToggleButton.contains(event.target);
+            if (!isClickInsideMenu && !mobileMenu.classList.contains('hidden')) {
+                closeMobileMenu();
+            }
+        });
+        
+    </script>
+</body>
+</html>
