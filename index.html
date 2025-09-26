@@ -20,6 +20,9 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .cta-gradient-bg {
+            background-image: linear-gradient(to right, #ec4899, #be185d);
+        }
 
         /* Light Mode */
         .light-mode {
@@ -49,6 +52,9 @@
         .dark-mode .bg-secondary { background-color: #4a5568; }
         .dark-mode .border-primary { border-color: #4a5568; }
         .dark-mode .text-gray-600 { color: #a0aec0; }
+        .dark-mode .cta-gradient-bg {
+            background-image: linear-gradient(to right, #ec4899, #be185d);
+        }
 
         /* High Contrast Mode */
         .high-contrast-mode {
@@ -79,6 +85,23 @@
         .high-contrast-mode .bg-pink-600 {
             background-color: #00ff00 !important;
             color: #000000 !important;
+        }
+        .high-contrast-mode .cta-gradient-bg {
+            background-image: none;
+            background-color: #000000;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+        .high-contrast-mode .cta-gradient-bg .text-5xl, .high-contrast-mode .cta-gradient-bg .text-lg {
+            color: #00ff00;
+        }
+        .high-contrast-mode .cta-gradient-bg .text-white {
+            color: #000000 !important;
+        }
+        .high-contrast-mode .bg-white.text-pink-600 {
+            background-color: #ffffff !important;
+            color: #00ff00 !important;
+            border: 2px solid #00ff00;
         }
     </style>
 </head>
@@ -281,7 +304,7 @@
         </section>
 
         <!-- Call to Action Banner -->
-        <section class="bg-pink-600 text-white py-16 text-center">
+        <section class="cta-gradient-bg text-white py-16 text-center">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
                     Ready to find your match?
